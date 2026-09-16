@@ -1,10 +1,14 @@
 # Eget: easy pre-built binary installation
 
-This fork: [![Go Report Card](https://goreportcard.com/badge/github.com/gmatheu/eget)](https://goreportcard.com/report/github.com/gmatheu/eget)
+This fork: [![Go Report Card](https://goreportcard.com/badge/github.com/mcsakoff/eget)](https://goreportcard.com/report/github.com/mcsakoff/eget)
+[![Release](https://img.shields.io/github/release/mcsakoff/eget.svg?label=Release)](https://github.com/mcsakoff/eget/releases)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/gmatheu/eget/blob/master/LICENSE)
+
+Upstream: [![Go Report Card](https://goreportcard.com/badge/github.com/gmatheu/eget)](https://goreportcard.com/report/github.com/gmatheu/eget)
 [![Release](https://img.shields.io/github/release/gmatheu/eget.svg?label=Release)](https://github.com/gmatheu/eget/releases)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/gmatheu/eget/blob/master/LICENSE)
 
-Upstream: [![Go Report Card](https://goreportcard.com/badge/github.com/zyedidia/eget)](https://goreportcard.com/report/github.com/zyedidia/eget)
+Upstream of upstream: [![Go Report Card](https://goreportcard.com/badge/github.com/zyedidia/eget)](https://goreportcard.com/report/github.com/zyedidia/eget)
 [![Release](https://img.shields.io/github/release/zyedidia/eget.svg?label=Release)](https://github.com/zyedidia/eget/releases)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/zyedidia/eget/blob/master/LICENSE)
 

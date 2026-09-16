@@ -42,6 +42,12 @@ package: build-dist eget.1
 		tar -czf eget-$(VERSION)-$(SYSTEM).tar.gz eget-$(VERSION)-$(SYSTEM);\
 	fi
 
+release-test:
+	goreleaser release --snapshot --clean
+
+release:
+	goreleaser release --clean
+
 version:
 	echo "package main\n\nvar Version = \"$(VERSION)+src\"" > version.go
 
@@ -49,4 +55,4 @@ clean:
 	rm -f test/eget.1 test/fd test/micro test/nvim test/pandoc test/rg.exe
 	rm -rf dist
 
-.PHONY: build clean install package version fmt vet test
+.PHONY: build clean install package version fmt vet test release-test release
