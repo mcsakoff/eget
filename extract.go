@@ -400,7 +400,7 @@ func (lf *LiteralFileChooser) String() string {
 
 type GlobChooser struct {
 	expr string
-	g    glob.Glob
+	g    *glob.Pattern
 	all  bool
 }
 
