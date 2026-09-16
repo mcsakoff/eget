@@ -12,6 +12,7 @@ import (
 	"time"
 
 	pb "github.com/schollz/progressbar/v3"
+
 	"github.com/zyedidia/eget/home"
 )
 
@@ -101,7 +102,7 @@ func (r RateLimit) String() string {
 }
 
 func GetRateLimit() (RateLimit, error) {
-	url := "https://api.github.com/rate_limit"
+	url := fmt.Sprintf("https://%s/rate_limit", GithubApiProxy)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return RateLimit{}, err

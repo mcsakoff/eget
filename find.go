@@ -68,7 +68,7 @@ func (f *GithubAssetFinder) Find() ([]string, error) {
 	}
 
 	// query github's API for this repo/tag pair.
-	url := fmt.Sprintf("https://api.github.com/repos/%s/releases/%s", f.Repo, f.Tag)
+	url := fmt.Sprintf("https://%s/repos/%s/releases/%s", GithubApiProxy, f.Repo, f.Tag)
 	resp, err := Get(url)
 	if err != nil {
 		return nil, err
@@ -111,7 +111,7 @@ func (f *GithubAssetFinder) Find() ([]string, error) {
 	// accumulate all assets from the json into a slice
 	assets := make([]string, 0, len(release.Assets))
 	for _, a := range release.Assets {
-		assets = append(assets, a.DownloadURL)
+		assets = append(assets, strings.Replace(a.DownloadURL, "github.com", GithubProxy, 1))
 	}
 
 	return assets, nil
@@ -121,7 +121,7 @@ func (f *GithubAssetFinder) FindMatch() ([]string, error) {
 	tag := f.Tag[len("tags/"):]
 
 	for page := 1; ; page++ {
-		url := fmt.Sprintf("https://api.github.com/repos/%s/releases?page=%d", f.Repo, page)
+		url := fmt.Sprintf("https://%s/repos/%s/releases?page=%d", GithubApiProxy, f.Repo, page)
 		resp, err := Get(url)
 		if err != nil {
 			return nil, err
@@ -162,7 +162,7 @@ func (f *GithubAssetFinder) FindMatch() ([]string, error) {
 				// we have a winner
 				assets := make([]string, 0, len(r.Assets))
 				for _, a := range r.Assets {
-					assets = append(assets, a.DownloadURL)
+					assets = append(assets, strings.Replace(a.DownloadURL, "github.com", GithubProxy, 1))
 				}
 				return assets, nil
 			}
@@ -178,7 +178,7 @@ func (f *GithubAssetFinder) FindMatch() ([]string, error) {
 
 // finds the latest pre-release and returns the tag
 func (f *GithubAssetFinder) getLatestTag() (string, error) {
-	url := fmt.Sprintf("https://api.github.com/repos/%s/releases", f.Repo)
+	url := fmt.Sprintf("https://%s/repos/%s/releases", GithubApiProxy, f.Repo)
 	resp, err := Get(url)
 	if err != nil {
 		return "", fmt.Errorf("pre-release finder: %w", err)
@@ -218,5 +218,5 @@ type GithubSourceFinder struct {
 }
 
 func (f *GithubSourceFinder) Find() ([]string, error) {
-	return []string{fmt.Sprintf("https://github.com/%s/tarball/%s/%s.tar.gz", f.Repo, f.Tag, f.Tool)}, nil
+	return []string{fmt.Sprintf("https://%s/%s/tarball/%s/%s.tar.gz", GithubProxy, f.Repo, f.Tag, f.Tool)}, nil
 }
